@@ -1,8 +1,12 @@
-import menu from "@/data/menu.json";
+import { getMenu } from "@/lib/menu";
 
-export default function MenuPage() {
+export const dynamic = "force-dynamic";
+
+export default async function MenuPage() {
+    const menu = await getMenu();
+
     return (
-        <main className="min-h-screen bg-neutral-950 text-white px-6 py-20">
+        <main className="min-h-screen bg-neutral-950 text-white px-6 py-32">
             <div className="mx-auto max-w-3xl">
                 <h1 className="text-5xl md:text-6xl font-bold text-center">Our Menu</h1>
 
@@ -14,12 +18,22 @@ export default function MenuPage() {
 
                         <div className="mt-6 space-y-6">
                             {section.items.map((item) => (
-                                <div key={item.name} className="flex justify-between gap-6 border-b border-white/10 pb-4">
-                                    <div>
-                                        <h3 className="text-xl font-semibold">{item.name}</h3>
-                                        <p className="mt-1 text-neutral-400">{item.description}</p>
+                                <div key={item.id} className="flex gap-5 border-b border-white/10 pb-6">
+                                    {item.imageKey && (
+                                        // eslint-disable-next-line @next/next/no-img-element
+                                        <img
+                                            src={`/api/menu-image?key=${encodeURIComponent(item.imageKey)}`}
+                                            alt={item.name}
+                                            className="h-24 w-24 shrink-0 rounded-xl object-cover md:h-32 md:w-32"
+                                        />
+                                    )}
+                                    <div className="flex flex-1 justify-between gap-4">
+                                        <div>
+                                            <h3 className="text-xl font-semibold">{item.name}</h3>
+                                            <p className="mt-1 text-neutral-400">{item.description}</p>
+                                        </div>
+                                        <p className="text-lg text-amber-400">${item.price.toFixed(2)}</p>
                                     </div>
-                                    <p className="text-lg text-amber-400">${item.price.toFixed(2)}</p>
                                 </div>
                             ))}
                         </div>
