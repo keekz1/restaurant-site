@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Your Restaurant",
-  description: "Fresh, authentic food. View our menu, order online or request catering.",
+  title: "Baity | Lebanese Restaurant",
+  description: "Fresh, authentic Lebanese food. View our menu, order online or request catering.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
