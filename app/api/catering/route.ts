@@ -6,7 +6,7 @@ import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 
 const REGION = "eu-west-2";
 const TABLE = "catering-requests";
-const OWNER_EMAIL = "you@example.com";
+const OWNER_EMAIL = "hadee22k@gmail.com";
 
 const db = DynamoDBDocumentClient.from(new DynamoDBClient({ region: REGION }));
 const ses = new SESv2Client({ region: REGION });
