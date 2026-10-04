@@ -4,9 +4,9 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 
-const REGION = "eu-west-2";
+const REGION = "eu-north-1";
 const TABLE = "catering-requests";
-const OWNER_EMAIL = "hadee22k@gmail.com";
+const OWNER_EMAIL = "eddiekiki4@gmail.com";
 
 const db = DynamoDBDocumentClient.from(new DynamoDBClient({ region: REGION }));
 const ses = new SESv2Client({ region: REGION });
@@ -78,8 +78,8 @@ export async function POST(request: Request) {
             })
         );
     } catch (err) {
-        console.error("Failed to send email", err);
+        console.error("Failed to save catering request", err);
+        return NextResponse.json({ error: "Could not save" }, { status: 500 });
     }
-
     return NextResponse.json({ ok: true });
 }
