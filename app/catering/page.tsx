@@ -71,7 +71,7 @@ export default function CateringPage() {
                         placeholder="Dietary needs, favourite dishes, location, anything else..."
                         className={field}
                     />
-                    kj
+
                     <button
                         type="submit"
                         disabled={status === "sending"}
