@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FBF6EC;
-  --foreground: #2B2118;
+  --background: #FFF4E0;
+  --foreground: #3A2318;
 }
 
 @theme inline {
@@ -11,13 +11,20 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  --color-cream: #FBF6EC;
-  --color-ink: #2B2118;
-  --color-cedar: #1F5E3B;
-  --color-cedar-dark: #174A2E;
-  --color-gold: #C9A24B;
-  --color-spice: #B3261E;
-  --color-spice-dark: #8F1D17;
+  /* Names are kept from before so no other file needs editing */
+  --color-cream: #FFF4E0;
+  /* warm cream background */
+  --color-ink: #3A2318;
+  /* deep brown text */
+  --color-cedar: #B5532A;
+  /* terracotta: hero, headings, links */
+  --color-cedar-dark: #7A3418;
+  /* burnt umber: footer, gradients */
+  --color-gold: #E8A317;
+  /* saffron: tagline, highlights */
+  --color-spice: #C8372D;
+  /* chili red: Order button, prices */
+  --color-spice-dark: #9C241C;
 }
 
 body {
