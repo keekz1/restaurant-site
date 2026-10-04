@@ -6,21 +6,41 @@ export type MenuItem = {
   id: string;
   category: string;
   name: string;
+  nameAr?: string;
   description: string;
   price: number;
   imageKey?: string;
   available?: boolean;
   sortOrder?: number;
+  vegetarian?: boolean;
+  spicy?: boolean;
+  popular?: boolean;
 };
 
 export type MenuSection = { category: string; items: MenuItem[] };
 
+// Sections appear in this order. Any other category goes at the end.
+const CATEGORY_ORDER = [
+  "Cold Mezze",
+  "Hot Mezze",
+  "Salads",
+  "Grills",
+  "Sandwiches",
+  "Desserts",
+  "Drinks",
+];
+
 const db = DynamoDBDocumentClient.from(new DynamoDBClient({ region: "eu-north-1" }));
+
+function orderIndex(category: string) {
+  const i = CATEGORY_ORDER.indexOf(category);
+  return i === -1 ? 999 : i;
+}
 
 function fromJson(): MenuSection[] {
   const data = fallback as {
     category: string;
-    items: { name: string; description: string; price: number }[];
+    items: { name: string; nameAr?: string; description: string; price: number }[];
   }[];
   return data.map((s) => ({
     category: s.category,
@@ -47,7 +67,9 @@ export async function getMenu(): Promise<MenuSection[]> {
       list.push(item);
       groups.set(item.category, list);
     }
-    return [...groups].map(([category, items]) => ({ category, items }));
+    return [...groups]
+      .map(([category, items]) => ({ category, items }))
+      .sort((a, b) => orderIndex(a.category) - orderIndex(b.category));
   } catch (err) {
     console.error("Could not read menu from DynamoDB, using menu.json", err);
     return fromJson();
