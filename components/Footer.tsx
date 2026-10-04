@@ -2,13 +2,13 @@ import info from "@/data/restaurant.json";
 
 export default function Footer() {
     return (
-        <footer className="border-t border-white/10 bg-neutral-950 px-6 py-10 text-center text-sm text-neutral-400">
-            <p className="text-lg font-semibold text-white">{info.name}</p>
-            <p className="mt-2">{info.address}</p>
+        <footer className="bg-cedar-dark px-6 py-12 text-center text-sm text-cream/80">
+            <p className="text-xl font-semibold text-cream">{info.name}</p>
+            <p className="mt-3">{info.address}</p>
             <p className="mt-1">
                 {info.phone} · {info.email}
             </p>
-            <p className="mt-6 text-xs text-neutral-600">
+            <p className="mt-8 text-xs text-cream/50">
                 © {new Date().getFullYear()} {info.name}. All rights reserved.
             </p>
         </footer>
