@@ -1,6 +1,6 @@
 import Link from "next/link";
 import info from "@/data/restaurant.json";
-import CedarIcon from "./CedarIcon";
+import Brand from "./Brand";
 const links = [
     { href: "/menu", label: "Menu" },
     { href: "/catering", label: "Catering" },
@@ -11,9 +11,8 @@ export default function Navbar() {
     return (
         <header className="fixed top-0 z-50 w-full border-b border-ink/10 bg-cream/90 backdrop-blur">
             <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-                <Link href="/" className="flex items-center gap-2 text-xl font-bold text-cedar">
-                    <CedarIcon className="h-8 w-8 text-tree" />
-                    {info.name}
+                <Link href="/" className="text-xl font-bold text-cedar">
+                    <Brand iconClass="h-10 w-10" />
                 </Link>
                 <div className="flex items-center gap-5 text-sm md:gap-8">
                     {links.map((l) => (

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import info from "@/data/restaurant.json";
 import { getMenu } from "@/lib/menu";
+import Brand from "@/components/Brand";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +27,7 @@ export default async function Home() {
           className="fade-up mt-6 text-6xl font-bold md:text-8xl"
           style={{ animationDelay: "0.2s" }}
         >
-          {info.name}
+          <Brand iconClass="h-16 w-16 md:h-24 md:w-24" />
         </h1>
 
         <div
