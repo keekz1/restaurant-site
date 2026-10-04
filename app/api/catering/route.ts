@@ -42,7 +42,11 @@ export async function POST(request: Request) {
         await db.send(new PutCommand({ TableName: TABLE, Item: item }));
     } catch (err) {
         console.error("Failed to save catering request", err);
-        return NextResponse.json({ error: "Could not save" }, { status: 500 });
+        const e = err as Error;
+        return NextResponse.json(
+            { error: "Could not save", reason: `${e.name}: ${e.message}` },
+            { status: 500 }
+        );
     }
 
     // The request is already saved, so an email failure should not lose it.

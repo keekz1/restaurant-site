@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function CateringPage() {
     const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-
+    const [errorMsg, setErrorMsg] = useState("");
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setStatus("sending");
@@ -18,8 +18,12 @@ export default function CateringPage() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
-            if (!res.ok) throw new Error("Request failed");
-            setStatus("sent");
+            if (!res.ok) {
+                const body = await res.json().catch(() => ({}));
+                setErrorMsg(body.reason || body.error || `Status ${res.status}`);
+                setStatus("error");
+                return;
+            } setStatus("sent");
             form.reset();
         } catch {
             setStatus("error");
@@ -80,7 +84,9 @@ export default function CateringPage() {
                         <p className="text-center text-emerald-400">Thank you! We&apos;ll be in touch soon.</p>
                     )}
                     {status === "error" && (
-                        <p className="text-center text-red-400">Something went wrong. Please try again.</p>
+                        <p className="text-center text-red-400">
+                            Something went wrong. {errorMsg}
+                        </p>
                     )}
                 </form>
             </div>
