@@ -1,0 +1,32 @@
+[
+    {
+        "category": "Starters",
+        "items": [
+            {
+                "name": "Hummus",
+                "description": "Creamy chickpea dip with olive oil and warm bread",
+                "price": 6.5
+            },
+            {
+                "name": "Falafel",
+                "description": "Crispy chickpea bites with tahini sauce",
+                "price": 7
+            }
+        ]
+    },
+    {
+        "category": "Mains",
+        "items": [
+            {
+                "name": "Mixed Grill",
+                "description": "Chicken, lamb and kofta with rice and salad",
+                "price": 18
+            },
+            {
+                "name": "Shawarma Plate",
+                "description": "Slow-cooked meat, garlic sauce, pickles and fries",
+                "price": 14
+            }
+        ]
+    }
+]
